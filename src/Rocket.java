@@ -1,40 +1,42 @@
-
+import java.util.ArrayList;
+import java.util.List;
 
 public class Rocket {
 
     private String codeOfRocket;
-    private int numberOfPropellant;
+    private List<Propeller> propellers = new ArrayList<>();
 
 
-    public Rocket(String codeOfRocket, int numberOfPropellant) throws Exception {
-        checkNumberOfPropellant(numberOfPropellant);
+    public Rocket(String codeOfRocket) throws Exception {
         checkCodeOfRocket(codeOfRocket);
         this.codeOfRocket = codeOfRocket;
-        this.numberOfPropellant = numberOfPropellant;
+
+    }
+    public void createPropeller(int maxLevelOfPower) throws Exception {
+        Propeller propeller = new Propeller(maxLevelOfPower);
+        propellers.add(propeller);
     }
 
-
-   private void checkCodeOfRocket(String name) throws Exception {
+    private void checkCodeOfRocket(String name) throws Exception {
         if (name.equals("")) throw new Exception("Wrong name");
     }
 
-    private void checkNumberOfPropellant(int numberOfPropellant) throws Exception {
-        if (numberOfPropellant <= 0) throw new Exception("Wrong number");
-    }
 
     public String getCodeOfRocket() {
         return codeOfRocket;
     }
 
-
-    public int getNumberOfPropellant() {
-        return numberOfPropellant;
+    public List<Propeller> getPropellers() {
+        return propellers;
     }
 
 
     @Override
     public String toString() {
-        return "code of Rocket is '" + codeOfRocket + '\'' +
-                " number Of Propellants = " + numberOfPropellant + '\n';
+        return "" +
+                "code Of Rocket = " + codeOfRocket +
+                " propellers = " + propellers;
     }
+
+
 }
