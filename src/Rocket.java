@@ -12,15 +12,27 @@ public class Rocket {
         this.codeOfRocket = codeOfRocket;
 
     }
+
+    private void checkCodeOfRocket(String codeOfRocket) throws Exception {
+        if (codeOfRocket.equals("")) throw new Exception();
+    }
+
     public void createPropeller(int maxLevelOfPower) throws Exception {
         Propeller propeller = new Propeller(maxLevelOfPower);
         propellers.add(propeller);
     }
 
-    private void checkCodeOfRocket(String name) throws Exception {
-        if (name.equals("")) throw new Exception("Wrong name");
+    public void accelerate() {
+        for (Propeller propeller : propellers) {
+            propeller.acceleratePropeller();
+        }
     }
 
+    public void brake() {
+        for (Propeller propeller : propellers) {
+            propeller.brakePropeller();
+        }
+    }
 
     public String getCodeOfRocket() {
         return codeOfRocket;
@@ -30,13 +42,10 @@ public class Rocket {
         return propellers;
     }
 
-
     @Override
     public String toString() {
-        return "" +
-                "code Of Rocket = " + codeOfRocket +
-                " propellers = " + propellers;
+        return
+                "code Of Rocket : " + codeOfRocket +
+                        " propellers" + propellers;
     }
-
-
 }

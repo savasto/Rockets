@@ -83,46 +83,37 @@
 //
 //Mostrar a pantalla la velocitat actual
 
-//    private static Wheel createWheel() throws Exception {// 2.creamos una rueda
-//        String brand = askUserForBrand();
-//        Double diameter = askUserForWheelDiameter();
-//
-//        Wheel wheel = new Wheel(brand, diameter);
-//        return wheel;
-//    }
-
-
-//        private static void printListOfRockets () throws Exception {
-//            System.out.println("List of rockets : " + buildListOfRockets());
-//        }
-//
-//        private static List<Rocket> buildListOfRockets () throws Exception {
-//            List<Rocket> rockets = new ArrayList<>();
-//            Rocket rocket1 = new Rocket("32WESSDS", 3);
-//            Rocket rocket2 = new Rocket("LDSFJA32", 6);
-//            rockets.add(rocket1);
-//            rockets.add(rocket2);
-//            return rockets;
-//        }
-//
-//    }
-//
-//    private static String assignName() {
-//
-//    }
-//    }
-
 public class Main {
 
     public static void main(String[] args) throws Exception {
+        Rocket rocket1 = manageFirstRocket();
+        Rocket rocket2 = manageSecondRocket();
+
+    }
+
+    private static Rocket manageFirstRocket() throws Exception {
         Rocket rocket1 = createFirstRocket();
+        System.out.println(rocket1 + "\n" + "accelerate 3 times:");
+        accelerateRocket(rocket1, 3);
+        System.out.println(rocket1 + "\n" + "brake 5 times:");
+        brakeRocket(rocket1, 5);
+        System.out.println(rocket1 + "\n" + "accelerate 15times:");
+        accelerateRocket(rocket1, 15);
+        System.out.println(rocket1 + "\n");
+        return rocket1;
+    }
+
+    private static Rocket manageSecondRocket() throws Exception {
         Rocket rocket2 = createSecondRocket();
-        printRocket(rocket1);
-        printRocket(rocket2);
+        System.out.println(rocket2 + "\n" + "accelerate 7 times:");
+        accelerateRocket(rocket2, 7);
+        System.out.println(rocket2 + "\n" + "accelerate 15 times:");
+        accelerateRocket(rocket2, 15);
+        System.out.println(rocket2);
+        return rocket2;
     }
 
     private static Rocket createFirstRocket() throws Exception {
-
         Rocket rocket1 = new Rocket("32WESSDS");
         rocket1.createPropeller(10);
         rocket1.createPropeller(30);
@@ -141,13 +132,18 @@ public class Main {
         return rocket2;
     }
 
-    private static void printRocket(Rocket rocket) throws Exception {
-        System.out.println(" " + rocket.toString());
+    private static void brakeRocket(Rocket rocket, int time) {
+        for (int i = 0; i < time; i++) {
+            rocket.brake();
+        }
     }
 
+    private static void accelerateRocket(Rocket rocket, int time) {
+        for (int i = 0; i < time; i++) {
+            rocket.accelerate();
+        }
+    }
 }
-
-
 
 
 
